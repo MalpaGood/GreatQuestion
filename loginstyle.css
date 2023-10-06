@@ -121,10 +121,11 @@ body {
 html,
 body {
     overflow-y: hidden;
+    height: 100%;
 }
 
 @media (max-width: 768px) {
     body {
-        background-position: 30% center;
+        background-position: 30% center -30px;
     }
 }
