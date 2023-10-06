@@ -118,6 +118,11 @@ body {
     text-decoration: underline;
 }
 
+html,
+body {
+    overflow-y: hidden;
+}
+
 @media (max-width: 768px) {
     body {
         background-position: 30% center;
