@@ -3,9 +3,9 @@ const oldButtons = document.querySelectorAll(".old-button");
 
 const newButtonsGroups = [
     [
-        { text: "Nowy Przycisk A1", url: "url_podstrony_A1.html" },
-        { text: "Nowy Przycisk A2", url: "url_podstrony_A2.html" },
-        { text: "Nowy Przycisk A3", url: "url_podstrony_A3.html" },
+        { text: "TAK", url: "url_podstrony_A1.html" },
+        { text: "AM", url: "url_podstrony_A2.html" },
+        { text: "PZ", url: "url_podstrony_A3.html" },
     ],
     [
         { text: "Nowy Przycisk B1", url: "url_podstrony_B1.html" },
@@ -13,9 +13,10 @@ const newButtonsGroups = [
         { text: "Nowy Przycisk B3", url: "url_podstrony_B3.html" },
     ],
     [
-        { text: "Nowy Przycisk C1", url: "url_podstrony_C1.html" },
-        { text: "Nowy Przycisk C2", url: "url_podstrony_C2.html" },
-        { text: "Nowy Przycisk C3", url: "url_podstrony_C3.html" },
+        { text: "SBD", url: "url_podstrony_C1.html" },
+        { text: "ASD", url: "url_podstrony_C3.html" },
+        { text: "SKJ", url: "url_podstrony_C3.html" },
+        { text: "SAD", url: "url_podstrony_C3.html" },
     ],
 ];
 
@@ -63,7 +64,7 @@ oldButtons.forEach((button, index) => {
             // Dodaj przycisk cofania
             const backButton = document.createElement("button");
             backButton.classList.add("back-button");
-            backButton.textContent = "Cofnij do początkowych przycisków";
+            backButton.textContent = "Cofnij";
             backButton.addEventListener("click", function () {
                 // Ukryj nowe przyciski, w tym przycisk cofania
                 const allNewButtons = document.querySelectorAll(".new-button");

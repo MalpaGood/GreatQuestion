@@ -14,18 +14,29 @@
 
     <body>
         <div class="wrapper">
-            <form action="mainPage.html">
+            <form id="loginForm" action="mainPage.html">
                 <h1>Login</h1>
                 <div class="input-box">
-                    <input type="text" placeholder="Username" required />
+                    <input
+                        id="usernameInput"
+                        type="text"
+                        placeholder="Username"
+                        required
+                    />
                     <i class="bx bxs-user"></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" placeholder="Password" required />
+                    <input
+                        id="passwordInput"
+                        type="password"
+                        placeholder="Password"
+                        required
+                    />
                     <i class="bx bxs-lock-alt"></i>
                 </div>
                 <button type="submit" class="btn">Login</button>
             </form>
         </div>
+        <script src="loginscript.js"></script>
     </body>
 </html>
