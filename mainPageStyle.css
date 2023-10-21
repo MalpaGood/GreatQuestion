@@ -78,6 +78,27 @@ button {
     font-weight: 600;
 }
 
+.return-login-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transform: translateY(0);
+    font-size: 16px;
+    color: grey;
+    font-weight: 600;
+}
+
+.return-login-button:hover {
+    background-color: lightgrey;
+}
+
 .wrapper .new-button:hover {
     background-color: lightgrey;
 }

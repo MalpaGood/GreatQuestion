@@ -13,33 +13,37 @@ const newButtonsGroups = [
         { text: "Nowy Przycisk B3", url: "url_podstrony_B3.html" },
     ],
     [
-        { text: "SBD", url: "url_podstrony_C1.html" },
+        { text: "SBD", url: "NotesSBD.html" },
         { text: "ASD", url: "url_podstrony_C3.html" },
         { text: "SKJ", url: "url_podstrony_C3.html" },
         { text: "SAD", url: "url_podstrony_C3.html" },
     ],
 ];
 
+window.addEventListener("DOMContentLoaded", function () {
+    const returnToLoginBtn = document.createElement("button");
+    returnToLoginBtn.textContent = "Wyloguj";
+    returnToLoginBtn.classList.add("return-login-button");
+    returnToLoginBtn.addEventListener("click", function () {
+        window.location.href = "index.html";
+    });
+    document.body.appendChild(returnToLoginBtn);
+});
+
 oldButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
-        // Ukryj stare przyciski
         oldButtons.forEach((btn) => {
             btn.style.opacity = "0";
             btn.style.transform = "translateY(0px)";
         });
 
-        // Po zakończeniu animacji ukrywania starych przycisków:
         setTimeout(() => {
-            // Ustaw stare przyciski na 'display: none'
             oldButtons.forEach((btn) => {
                 btn.style.display = "none";
             });
-
-            // Usuń poprzednie nowe przyciski (jeśli istnieją)
             const existingNewButtons = document.querySelectorAll(".new-button");
             existingNewButtons.forEach((btn) => btn.remove());
 
-            // Dodaj nowe przyciski
             const newButtonGroup = newButtonsGroups[index];
             newButtonGroup.forEach((data) => {
                 const newButton = document.createElement("button");
@@ -61,40 +65,35 @@ oldButtons.forEach((button, index) => {
                 }, 10);
             });
 
-            // Dodaj przycisk cofania
             const backButton = document.createElement("button");
             backButton.classList.add("back-button");
             backButton.textContent = "Cofnij";
             backButton.addEventListener("click", function () {
-                // Ukryj nowe przyciski, w tym przycisk cofania
                 const allNewButtons = document.querySelectorAll(".new-button");
                 allNewButtons.forEach((btn) => {
                     btn.style.opacity = "0";
                 });
 
-                // Po zakończeniu animacji ukrywania nowych przycisków:
                 setTimeout(() => {
                     allNewButtons.forEach((btn) => {
                         btn.remove();
                     });
 
-                    // Usuń przycisk "Cofnij"
                     const backButtonElement =
                         document.querySelector(".back-button");
                     if (backButtonElement) {
                         backButtonElement.remove();
                     }
 
-                    // Pokaż stare przyciski
                     oldButtons.forEach((btn) => {
                         btn.style.display = "";
                         btn.style.opacity = "1";
                         btn.style.transform = "translateY(0px)";
                     });
-                }, 400); // Dopasuj czas do długości animacji ukrywania nowych przycisków
+                }, 400);
             });
 
             container.appendChild(backButton);
-        }, 400); // Dopasuj czas do długości animacji ukrywania starych przycisków
+        }, 400);
     });
 });
