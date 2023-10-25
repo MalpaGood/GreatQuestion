@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const validCredentials = [
         { username: "admin", password: "pjatk" },
         { username: "wafel", password: "lucy_waifu" },
-        { username: "user3", password: "pass3" },
+        { username: "Piotr", password: "jajca" },
         { username: "user4", password: "pass4" },
     ];
 
