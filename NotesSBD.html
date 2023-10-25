@@ -98,6 +98,77 @@
             >
             <img src="Szlaki1.png" alt="Zdjęcie 6" class="wrapper" />
             <img src="Szlaki2.png" alt="Zdjęcie 7" class="wrapper" />
+            <b class="wrapper"
+                >1. Znajdź pracowników z pensją równą minimalnemu zarobkowi w
+                firmie. <br />
+                2. Znajdź wszystkich pracowników zatrudnionych na tym samym
+                stanowisku, co BLAKE. <br />
+                3. Znajdź pracowników, których płace wynoszą tyle, ile najniższe
+                zarobki w poszczególnych departamentach. <br />
+                4. Stosując kwantyfikator ANY wybierz pracowników zarabiających
+                powyżej najniższego zarobku z departamentu 30 (czyli więcej od
+                dowolnego pracownika z departamentu 30). <br />
+                5. Stosując kwantyfikator ALL znajdź pracowników, których
+                zarobki są wyższe od pensji każdego pracownika z departamentu 30
+                (czyli większe od najwyższej pensji w departamencie 30). <br />
+                6. Wybierz departamenty, których średnie zarobki przekraczają
+                średni zarobek departamentu 30.<br />
+                7. Znajdź pracowników, którzy zarabiają najwięcej w swoich
+                departamentach.<br />
+                8. Znajdź za pomocą predykatu EXISTS pracowników, którzy
+                posiadają podwładnych.<br />
+                9. Znajdź pracowników, których departament nie występuje w
+                tabeli DEPT.<br />
+                10. Podaj nazwisko, pensję i nazwę departamentu pracowników,
+                których płaca przekracza średnią ich grup zarobkowych. <br />
+                11. Znajdź pracowników zarabiających minimalną pensję w ich
+                grupach zarobkowych. Wynikowe rekordy uporządkuj według
+                malejących grup zarobkowych.<br />
+                12. Wypisz nazwisko, płacę, numer departamentu i średnią
+                zarobków w departamencie (w jednym wyniku!) dla pracowników,
+                których zarobki przekraczają średnią ich departamentów
+                (rozwiązanie nie wymaga użycia korelacji).</b
+            >
+            <b class="wrapper"
+                >--1<br />
+                SELECT * FROM emp e WHERE e.sal = (SELECT MIN(sal) FROM emp);<br />
+                --2<br />
+                SELECT * FROM emp e WHERE e.job = ( SELECT job FROM emp WHERE
+                ename = 'BLAKE'); <br />--3 <br />SELECT * FROM emp e WHERE
+                e.sal IN (SELECT MIN(sal) FROM emp GROUP BY deptno);
+                <br />--4<br />
+                SELECT * FROM emp e WHERE e.sal > ANY(SELECT sal FROM emp WHERE
+                deptno=30); SELECT * FROM emp e WHERE e.sal > (SELECT MIN(sal)
+                FROM emp WHERE deptno=30); <br />--5 <br />SELECT * FROM emp e
+                WHERE e.sal > ALL(SELECT sal FROM emp WHERE deptno=30); SELECT *
+                FROM emp e WHERE e.sal > (SELECT MAX(sal) FROM emp WHERE deptno
+                = 30);<br />
+                --6 <br />SELECT d.dname FROM emp e JOIN dept d ON d.deptno =
+                e.deptno GROUP BY e.deptno, d.dname HAVING AVG(e.sal) > (SELECT
+                AVG(e2.sal) FROM emp e2 WHERE e2.deptno = 30);<br />
+                --7 <br />SELECT e.* FROM emp e WHERE e.sal = (SELECT
+                MAX(e2.sal) FROM emp e2 WHERE e2.deptno = e.deptno);
+                <br />--8<br />
+                SELECT * FROM emp e WHERE EXISTS (SELECT 1 FROM emp e2 WHERE
+                e2.mgr = e.empno);<br />
+                --9 <br />SELECT * FROM emp e WHERE NOT EXISTS (SELECT 1 FROM
+                dept d WHERE d.deptno = e.deptno); --bez korelacji SELECT * FROM
+                emp e WHERE e.deptno NOT IN (SELECT deptno FROM dept);
+                <br />--10<br />
+                SELECT e.ename, e.sal, e.deptno, s.grade FROM emp e JOIN
+                salgrade s ON e.sal BETWEEN s.losal AND s.hisal WHERE e.sal >
+                (SELECT AVG(e2.sal) FROM emp e2 JOIN salgrade s2 ON e2.sal
+                BETWEEN s2.losal AND s2.hisal WHERE s2.grade = s.grade);
+                <br />--11 <br />SELECT e.ename, e.sal, s.grade FROM emp e JOIN
+                salgrade s ON e.sal BETWEEN s.losal AND s.hisal WHERE e.sal =
+                (SELECT MIN(e2.sal) FROM emp e2 JOIN salgrade s2 ON e2.sal
+                BETWEEN s2.losal AND s2.hisal WHERE s2.grade = s.grade) ORDER BY
+                s.grade;<br />
+                --12 <br />SELECT e.ename, e.sal, e.deptno, sub.av "Srednia w
+                departamencie" FROM (SELECT ROUND(AVG(e2.sal),2) av, e2.deptno
+                FROM emp e2 GROUP BY e2.deptno) sub JOIN emp e on sub.deptno =
+                e.deptno WHERE e.sal > sub.av;
+            </b>
         </div>
     </body>
 </html>
