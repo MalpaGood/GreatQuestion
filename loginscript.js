@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { username: "admin", password: "pjatk" },
         { username: "wafel", password: "lucy_waifu" },
         { username: "Piotr", password: "jajca" },
-        { username: "user4", password: "pass4" },
+        { username: "mpiw", password: "SesjaUjebana" },
     ];
 
     const loginForm = document.getElementById("loginForm");
