@@ -169,6 +169,115 @@
                 FROM emp e2 GROUP BY e2.deptno) sub JOIN emp e on sub.deptno =
                 e.deptno WHERE e.sal > sub.av;
             </b>
+            <h1>T-SQL</h1>
+            <b class="wrapper">
+                1. Napisz prosty program w Transact-SQL. Zadeklaruj zmienną,
+                przypisz na tą zmienną liczbę rekordów w tabeli Emp (lub
+                jakiejkolwiek innej) i wypisz uzyskany wynik używając instrukcji
+                PRINT, w postaci napisu np. "W tabeli jest 10 osób".
+                <br /><br />
+                2. Używając Transact-SQL, policz liczbę pracowników z tabeli
+                EMP. Jeśli liczba jest mniejsza niż 16, wstaw pracownika
+                Kowalskiego i wypisz komunikat. W przeciwnym przypadku wypisz
+                komunikat informujący o tym, że nie wstawiono danych.
+                <br /><br />
+                3.Napisz procedurę zwracającą pracowników, którzy zarabiają
+                więcej niż wartość zadana parametrem procedury. <br />
+                <br />
+                4. Napisz procedurę zwracającą pracowników, którzy zarabiają
+                więcej niż wartość zadana parametrem procedury. <br />
+                <br />
+                5. Napisz procedurę umożliwiającą użytkownikowi wprowadzanie
+                nowych pracowników do tabeli EMP. Jako parametry będziemy
+                podawać nazwisko i nr działu zatrudnianego pracownika. Procedura
+                powinna wprowadzając nowy rekord sprawdzić, czy wprowadzany
+                dział istnieje (jeżeli nie, to należy zgłosić błąd) oraz
+                obliczyć mu pensję równą minimalnemu zarobkowi w tym dziale.
+                EMPNO nowego pracownika powinno zostać wyliczone jako najwyższa
+                istniejąca wartość w tabeli + 1.
+            </b>
+            <img src="zad1-3.png" alt="" />
+            <img src="Zad4.png" alt="" />
+            <img src="Zad5.png" alt="" />
+            <b class="wrapper">
+                6. Przy pomocy kursora przejrzyj wszystkich pracowników i
+                zmodyfikuj wynagrodzenia tak, aby osoby zarabiające mniej niż
+                1000 miały zwiększone wynagrodzenie o 10%, natomiast osoby
+                zarabiające powyżej 1500 miały zmniejszone wynagrodzenie o 10%.
+                Wypisz na ekran każdą wprowadzoną zmianę. <br />
+                <br />
+                7. Przerób kod z zadania 1 na procedurę tak, aby wartości
+                zarobków (1000 i 1500) nie były stałe, tylko były parametrami
+                procedury. <br />
+                <br />
+                8. W procedurze sprawdź średnią wartość zarobków z tabeli EMP z
+                działu określonego parametrem procedury. Następnie należy dać
+                prowizję (comm) tym pracownikom tego działu, którzy zarabiają
+                poniżej średniej. Prowizja powinna wynosić 5% ich miesięcznego
+                wynagrodzenia. <br />
+                <br />
+                9. (bez kursora) Utwórz tabelę Magazyn (IdPozycji, Nazwa, Ilosc)
+                zawierającą ilości poszczególnych towarów w magazynie i wstaw do
+                niej kilka przykładowych rekordów. W bloku Transact-SQL sprawdź,
+                którego artykułu jest najwięcej w magazynie i zmniejsz ilość
+                tego artykułu o 5 (jeśli stan jest większy lub równy 5, w
+                przeciwnym wypadku zgłoś błąd). <br />
+                <br />
+                10. Przerób kod z zadania 4 na procedurę, której będziemy mogli
+                podać wartość, o którą zmniejszamy stan (zamiast wpisanego „na
+                sztywno” 5).
+            </b>
+            <img src="Zad6.png" alt="" />
+            <img src="Zad7.png" alt="" />
+            <img src="Zad8-9.png" alt="" />
+            <img src="Zad10.png" alt="" />
+            <b class="wrapper">
+                1. Utwórz wyzwalacz, który nie pozwoli usunąć rekordu z tabeli
+                Emp. <br />
+                <br />
+                2. Utwórz wyzwalacz, który przy wstawianiu pracownika do tabeli
+                Emp, wstawi prowizję równą 0, jeśli prowizja była pusta. Uwaga:
+                Zadanie da się wykonać bez użycia wyzwalaczy przy pomocy
+                DEFAULT. Użyjmy jednak wyzwalacza w celach treningowych. <br />
+                <br />
+                3. Utwórz wyzwalacz, który przy wstawianiu lub modyfikowaniu
+                danych w tabeli Emp sprawdzi czy nowe zarobki (wstawiane lub
+                modyfikowane) są większe niż 1000. W przeciwnym przypadku
+                wyzwalacz powinien zgłosić błąd i nie dopuścić do wstawienia
+                rekordu. Uwaga: Ten sam efekt można uzyskać łatwiej przy pomocy
+                więzów spójności typu CHECK. Użyjmy wyzwalacza w celach
+                treningowych. <br />
+                <br />
+                4. Utwórz tabelę budzet: CREATE TABLE budzet (wartosc INT NOT
+                NULL) W tabeli tej będzie przechowywana łączna wartość
+                wynagrodzenia wszystkich pracowników. Tabela będzie zawsze
+                zawierała jeden wiersz. Należy najpierw obliczyć początkową
+                wartość zarobków: INSERT INTO budzet (wartosc) SELECT SUM(sal)
+                FROM emp Utwórz wyzwalacz, który będzie pilnował, aby wartość w
+                tabeli budzet była zawsze aktualna, a więc przy wszystkich
+                operacjach aktualizujących tabelę emp (INSERT, UPDATE, DELETE),
+                wyzwalacz będzie aktualizował wpis w tabeli budżet <br />
+                <br />
+                5. Napisz wyzwalacz, który nie pozwoli modyfikować nazw działów
+                w tabeli dept. Powinno być jednak możliwe wstawianie nowych
+                działów. <br />
+                <br />
+                6. Napisz jeden wyzwalacz, który: <br />
+                • Nie pozwoli usunąć pracownika, którego pensja jest większa od
+                0. <br />
+                • Nie pozwoli zmienić nazwiska pracownika. <br />
+                • Nie pozwoli wstawić pracownika, który już istnieje
+                (sprawdzając po nazwisku). <br />
+                <br />
+                7. Napisz wyzwalacz, który: <br />
+                • Nie pozwoli zmniejszać pensji. <br />
+                • Nie pozwoli usuwać pracowników.
+            </b>
+            <img src="Zad11-12.png" alt="" />
+            <img src="Zad13-14.png" alt="" />
+            <img src="Zad15.png" alt="" />
+            <img src="Zad16.png" alt="" />
+            <img src="Zad17.png" alt="" />
         </div>
     </body>
 </html>
